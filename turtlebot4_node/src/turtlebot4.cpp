@@ -135,15 +135,15 @@ Turtlebot4::Turtlebot4()
     rclcpp::SensorDataQoS(),
     std::bind(&Turtlebot4::battery_callback, this, std::placeholders::_1));
 
-  dock_status_sub_ = this->create_subscription<irobot_create_msgs::msg::DockStatus>(
-    "dock_status",
-    rclcpp::SensorDataQoS(),
-    std::bind(&Turtlebot4::dock_status_callback, this, std::placeholders::_1));
+  //dock_status_sub_ = this->create_subscription<irobot_create_msgs::msg::DockStatus>(
+  //  "dock_status",
+  //  rclcpp::SensorDataQoS(),
+  //  std::bind(&Turtlebot4::dock_status_callback, this, std::placeholders::_1));
 
-  wheel_status_sub_ = this->create_subscription<irobot_create_msgs::msg::WheelStatus>(
-    "wheel_status",
-    rclcpp::SensorDataQoS(),
-    std::bind(&Turtlebot4::wheel_status_callback, this, std::placeholders::_1));
+  //wheel_status_sub_ = this->create_subscription<irobot_create_msgs::msg::WheelStatus>(
+  //  "wheel_status",
+  //  rclcpp::SensorDataQoS(),
+  //  std::bind(&Turtlebot4::wheel_status_callback, this, std::placeholders::_1));
 
   // Publishers
   ip_pub_ = this->create_publisher<std_msgs::msg::String>(
@@ -155,55 +155,55 @@ Turtlebot4::Turtlebot4()
     rclcpp::QoS(rclcpp::KeepLast(10)));
 
   // Create action/service clients
-  dock_client_ = std::make_unique<Turtlebot4Action<Dock>>(node_handle_, "dock");
-  undock_client_ = std::make_unique<Turtlebot4Action<Undock>>(node_handle_, "undock");
-  wall_follow_client_ = std::make_unique<Turtlebot4Action<WallFollow>>(node_handle_, "wall_follow");
-  led_animation_client_ = std::make_unique<Turtlebot4Action<LedAnimation>>(
-    node_handle_,
-    "led_animation");
-  estop_client_ = std::make_unique<Turtlebot4Service<EStop>>(node_handle_, "e_stop");
-  power_client_ = std::make_unique<Turtlebot4Service<Power>>(node_handle_, "robot_power");
+  //dock_client_ = std::make_unique<Turtlebot4Action<Dock>>(node_handle_, "dock");
+  //undock_client_ = std::make_unique<Turtlebot4Action<Undock>>(node_handle_, "undock");
+  //wall_follow_client_ = std::make_unique<Turtlebot4Action<WallFollow>>(node_handle_, "wall_follow");
+  //led_animation_client_ = std::make_unique<Turtlebot4Action<LedAnimation>>(
+  //  node_handle_,
+  //  "led_animation");
+  //estop_client_ = std::make_unique<Turtlebot4Service<EStop>>(node_handle_, "e_stop");
+  //power_client_ = std::make_unique<Turtlebot4Service<Power>>(node_handle_, "robot_power");
   rplidar_start_client_ = std::make_unique<Turtlebot4EmptyService<EmptySrv>>(
     node_handle_,
     "start_motor");
-  rplidar_stop_client_ = std::make_unique<Turtlebot4EmptyService<EmptySrv>>(
-    node_handle_,
-    "stop_motor");
+  //rplidar_stop_client_ = std::make_unique<Turtlebot4EmptyService<EmptySrv>>(
+  //  node_handle_,
+  //  "stop_motor");
   oakd_start_client_ = std::make_unique<Turtlebot4Service<TriggerSrv>>(
     node_handle_,
     "oakd/start_camera");
-  oakd_stop_client_ = std::make_unique<Turtlebot4Service<TriggerSrv>>(
-    node_handle_,
-    "oakd/stop_camera");
+  //oakd_stop_client_ = std::make_unique<Turtlebot4Service<TriggerSrv>>(
+  //  node_handle_,
+  //  "oakd/stop_camera");
 
   function_callbacks_ = {
-    {"Dock", std::bind(&Turtlebot4::dock_function_callback, this)},
-    {"Undock", std::bind(&Turtlebot4::undock_function_callback, this)},
-    {"Wall Follow Left", std::bind(&Turtlebot4::wall_follow_left_function_callback, this)},
-    {"Wall Follow Right", std::bind(&Turtlebot4::wall_follow_right_function_callback, this)},
-    {"EStop", std::bind(&Turtlebot4::estop_function_callback, this)},
-    {"Power", std::bind(&Turtlebot4::power_function_callback, this)},
+  //  {"Dock", std::bind(&Turtlebot4::dock_function_callback, this)},
+  //  {"Undock", std::bind(&Turtlebot4::undock_function_callback, this)},
+  //  {"Wall Follow Left", std::bind(&Turtlebot4::wall_follow_left_function_callback, this)},
+  //  {"Wall Follow Right", std::bind(&Turtlebot4::wall_follow_right_function_callback, this)},
+  //  {"EStop", std::bind(&Turtlebot4::estop_function_callback, this)},
+  //  {"Power", std::bind(&Turtlebot4::power_function_callback, this)},
     {"RPLIDAR Start", std::bind(&Turtlebot4::rplidar_start_function_callback, this)},
-    {"RPLIDAR Stop", std::bind(&Turtlebot4::rplidar_stop_function_callback, this)},
+  //  {"RPLIDAR Stop", std::bind(&Turtlebot4::rplidar_stop_function_callback, this)},
     {"OAKD Start", std::bind(&Turtlebot4::oakd_start_function_callback, this)},
-    {"OAKD Stop", std::bind(&Turtlebot4::oakd_stop_function_callback, this)},
-    {"Scroll Up", std::bind(&Turtlebot4::scroll_up_function_callback, this)},
-    {"Scroll Down", std::bind(&Turtlebot4::scroll_down_function_callback, this)},
-    {"Select", std::bind(&Turtlebot4::select_function_callback, this)},
-    {"Back", std::bind(&Turtlebot4::back_function_callback, this)},
-    {"Help", std::bind(&Turtlebot4::help_function_callback, this)},
+  //  {"OAKD Stop", std::bind(&Turtlebot4::oakd_stop_function_callback, this)},
+  //  {"Scroll Up", std::bind(&Turtlebot4::scroll_up_function_callback, this)},
+  //  {"Scroll Down", std::bind(&Turtlebot4::scroll_down_function_callback, this)},
+  //  {"Select", std::bind(&Turtlebot4::select_function_callback, this)},
+  //  {"Back", std::bind(&Turtlebot4::back_function_callback, this)},
+  //  {"Help", std::bind(&Turtlebot4::help_function_callback, this)},
   };
 
   // Set function callbacks
-  add_button_function_callbacks();
-  add_menu_function_callbacks();
+  //add_button_function_callbacks();
+  //add_menu_function_callbacks();
 
   // Buttons
-  buttons_ = std::make_unique<Buttons>(model_, turtlebot4_buttons_, node_handle_);
+  //buttons_ = std::make_unique<Buttons>(model_, turtlebot4_buttons_, node_handle_);
 
   if (model_ == Turtlebot4Model::STANDARD) {
     // Display
-    display_ = std::make_unique<Display>(turtlebot4_menu_entries_, node_handle_);
+    //display_ = std::make_unique<Display>(turtlebot4_menu_entries_, node_handle_);
 
     // Leds
     leds_ = std::make_unique<Leds>(node_handle_);
@@ -225,7 +225,7 @@ void Turtlebot4::run()
     // Set Motors LED
     leds_->set_led(MOTORS, GREEN);
 
-    display_timer(std::chrono::milliseconds(DISPLAY_TIMER_PERIOD));
+   // display_timer(std::chrono::milliseconds(DISPLAY_TIMER_PERIOD));
     leds_timer(std::chrono::milliseconds(LEDS_TIMER_PERIOD));
   }
 
