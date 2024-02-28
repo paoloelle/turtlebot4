@@ -9,6 +9,7 @@
   <xacro:include filename="$(find turtlebot4_description)/urdf/standard/tower_sensor_plate.urdf.xacro" />
   <xacro:include filename="$(find turtlebot4_description)/urdf/standard/weight_block.urdf.xacro" />
 
+
   <!-- Mechanical properties -->
   <xacro:property name="shell_z_offset"                value="${3*cm2m}" />
   <xacro:property name="shell_radius"                  value="${12*cm2m}" />
@@ -109,6 +110,7 @@
     <origin xyz="0 0 ${tower_sensor_plate_z_offset}"/>
   </xacro:tower_sensor_plate>
 
+
   <!-- Turtlebot4 sensor definitions -->
 
   <xacro:rplidar name="rplidar" parent_link="shell_link" gazebo="$(arg gazebo)">
@@ -123,5 +125,38 @@
   <xacro:oakd model="pro" parent_link="oakd_camera_bracket">
     <origin xyz="${oakd_pro_x_offset} ${oakd_pro_y_offset} ${oakd_pro_z_offset}"/>
   </xacro:oakd>
+
+  <gazebo>
+		<model name="light_sensor">
+
+			<static>true</static>
+
+      <joint name="light_joint">
+
+
+			<link name="light_sensor_link">
+				<visual name="visual_object">					
+					<geometry>
+						<cylinder>
+							<radius>.1</radius>
+							<length>0.08</length>
+						</cylinder>
+						</geometry>
+						<material>
+							<diffuse>1 0 0 1</diffuse>
+						</material>
+				</visual>
+      </link>
+
+      
+
+			<!--FIXME no absoulte path-->
+			<plugin
+				filename="/home/paolo/light_sensor_plugin/install/lib/libLightSensor.so"
+				name="custom_light_sensor::LightSensor">
+				<update_rate>1</update_rate>
+			</plugin>
+    </model>
+  </gazebo>
 
 </robot>

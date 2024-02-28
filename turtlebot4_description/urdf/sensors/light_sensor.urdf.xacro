@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:macro name="light_sensor" params="name" >
+
+  <gazebo>
+		<model name="${name}">
+
+			<static>true</static>
+			<link name="${name}_link">
+				<visual name="visual_object">					
+					<geometry>
+						<cylinder>
+							<radius>.1</radius>
+							<length>0.08</length>
+						</cylinder>
+						</geometry>
+						<material>
+							<diffuse>1 0 0 1</diffuse>
+						</material>
+				</visual>
+
+      </link>
+
+			<!--FIXME no absoulte path-->
+			<plugin
+				filename="/home/paolo/light_sensor_plugin/install/lib/libLightSensor.so"
+				name="custom_light_sensor::LightSensor">
+				<update_rate>1</update_rate>
+			</plugin>
+    </model>
+  <gazebo>
+
+</xacro:macro>
+</robot>

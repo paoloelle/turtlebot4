@@ -35,6 +35,9 @@
     </inertial>
   </link>
 
+
+
+
   <gazebo reference="${joint_name}">
     <preserveFixedJoint>true</preserveFixedJoint>
   </gazebo>
