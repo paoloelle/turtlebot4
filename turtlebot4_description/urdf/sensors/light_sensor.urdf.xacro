@@ -4,9 +4,9 @@
 <xacro:macro name="light_sensor" params="name" >
 
   <gazebo>
-		<model name="${name}">
+		<!--<model name="${name}">-->
 
-			<static>true</static>
+			<!--<static>true</static>-->
 			<link name="${name}_link">
 				<visual name="visual_object">					
 					<geometry>
@@ -28,8 +28,8 @@
 				name="custom_light_sensor::LightSensor">
 				<update_rate>1</update_rate>
 			</plugin>
-    </model>
-  <gazebo>
+    <!--</model>-->
+  </gazebo>
 
 </xacro:macro>
 </robot>

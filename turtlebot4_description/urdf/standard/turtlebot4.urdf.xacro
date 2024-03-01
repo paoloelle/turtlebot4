@@ -126,37 +126,9 @@
     <origin xyz="${oakd_pro_x_offset} ${oakd_pro_y_offset} ${oakd_pro_z_offset}"/>
   </xacro:oakd>
 
-  <gazebo>
-		<model name="light_sensor">
-
-			<static>true</static>
-
-      <joint name="light_joint">
+  <xacro:include filename="$(find turtlebot4_description)/urdf/sensors/light_sensor.urdf.xacro" />
+  <xacro:light_sensor name="light_sensor" />
 
 
-			<link name="light_sensor_link">
-				<visual name="visual_object">					
-					<geometry>
-						<cylinder>
-							<radius>.1</radius>
-							<length>0.08</length>
-						</cylinder>
-						</geometry>
-						<material>
-							<diffuse>1 0 0 1</diffuse>
-						</material>
-				</visual>
-      </link>
-
-      
-
-			<!--FIXME no absoulte path-->
-			<plugin
-				filename="/home/paolo/light_sensor_plugin/install/lib/libLightSensor.so"
-				name="custom_light_sensor::LightSensor">
-				<update_rate>1</update_rate>
-			</plugin>
-    </model>
-  </gazebo>
 
 </robot>
