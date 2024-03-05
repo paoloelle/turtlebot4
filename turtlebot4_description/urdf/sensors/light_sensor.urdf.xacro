@@ -3,12 +3,12 @@
 
 <xacro:macro name="light_sensor" params="name">
 
-  <gazebo>
-		<!--<model name="${name}">-->
+	
 
-			<!--<static>true</static>-->
-			<link name="${name}_link">
+	<gazebo>
+		<model name="${name}">
 			<pose> 0.1 0 0.35 0 0 0 </pose>
+			<link name="${name}_link">
 				<visual name="visual_object">					
 					<geometry>
 						<cylinder>
@@ -31,18 +31,17 @@
 					</inertia>
 					<mass>0.1</mass>
 				</inertial>
-
-
-      		</link>
+	    	</link>
 
 			<!--FIXME no absoulte path-->
 			<plugin
 				filename="/home/paolo/light_sensor_plugin/install/lib/libLightSensor.so"
 				name="custom_light_sensor::LightSensor">
-				<update_rate>1</update_rate>
+				<update_rate>5</update_rate>
 			</plugin>
-    <!--</model>-->
-  </gazebo>
+		</model>
+
+	</gazebo>
 
 </xacro:macro>
 </robot>
