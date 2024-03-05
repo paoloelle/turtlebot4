@@ -111,7 +111,7 @@
   </xacro:tower_sensor_plate>
 
 
-  <!-- Turtlebot4 sensor definitions -->
+  <!-- Turtlebot4 sensors definitions -->
 
   <xacro:rplidar name="rplidar" parent_link="shell_link" gazebo="$(arg gazebo)">
     <origin xyz="${rplidar_x_offset} ${rplidar_y_offset} ${rplidar_z_offset}"
@@ -126,8 +126,16 @@
     <origin xyz="${oakd_pro_x_offset} ${oakd_pro_y_offset} ${oakd_pro_z_offset}"/>
   </xacro:oakd>
 
+
+  <gazebo>
+    <joint name="light_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>light_sensor1_link</child>
+    </joint>
+  </gazebo>
+
   <xacro:include filename="$(find turtlebot4_description)/urdf/sensors/light_sensor.urdf.xacro" />
-  <xacro:light_sensor name="light_sensor" />
+  <xacro:light_sensor name="light_sensor1"/>
 
 
 
