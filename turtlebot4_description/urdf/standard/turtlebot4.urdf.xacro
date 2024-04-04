@@ -130,90 +130,25 @@
 
   <!--include light sensors-->
 
-  <!--<xacro:include filename="$(find turtlebot4_description)/urdf/sensors/light_sensor.urdf.xacro" />
-  <xacro:light_sensor name="light_sensor1"/>-->
-
-  <!--<joint name="light_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="shell_link"/>
-    <origin xyz="0 0 ${shell_z_offset + base_link_z_offset}" rpy="0 0 0"/>
-  </joint>-->
-  
   <gazebo>
-
-    <!-- light sensor 1-->
-    <model name="light_sensor1">
-
-	    <link name="light_link1">
-	      <pose> 0.1 0 0.35 0 0 0 </pose>
-	    	<visual name="visual_object1">					
-	    		<geometry>
-	    			<cylinder>
-	    				<radius>0.01</radius>
-	    				<length>0.01</length>
-	    			</cylinder>
-	    			</geometry>
-	    			<material>
-	    				<diffuse>0 1 1 1</diffuse>
-	    			</material>
-	    	</visual>
-	    	<inertial>
-	    		<inertia>
-	    			<ixx>0</ixx>
-	    			<ixy>0</ixy>
-	    			<ixz>0</ixz>
-	    			<iyy>0</iyy>
-	    			<iyz>0</iyz>
-	    			<izz>0</izz>
-	    		</inertia>
-	    		<mass>0.1</mass>
-	    	</inertial>
-      </link>
-
-		  	<!--FIXME no absoulte path-->
-		  	<plugin
-		  		filename="/home/paolo/light_sensor_plugin/install/lib/libLightSensor.so"
-		  		name="custom_light_sensor::LightSensor">
-		  		<update_rate>5</update_rate>
-		  	</plugin>
-    </model>
-
-    <!-- light sensor 2-->
-    <model name="light_sensor2">
-
-	    <link name="light_link2">
-	      <pose> -0.1 0 0.35 0 0 0 </pose>
-	    	<visual name="visual_object2">					
-	    		<geometry>
-	    			<cylinder>
-	    				<radius>0.01</radius>
-	    				<length>0.01</length>
-	    			</cylinder>
-	    			</geometry>
-	    			<material>
-	    				<diffuse>0 0 1 1</diffuse>
-	    			</material>
-	    	</visual>
-	    	<inertial>
-	    		<inertia>
-	    			<ixx>0</ixx>
-	    			<ixy>0</ixy>
-	    			<ixz>0</ixz>
-	    			<iyy>0</iyy>
-	    			<iyz>0</iyz>
-	    			<izz>0</izz>
-	    		</inertia>
-	    		<mass>0.1</mass>
-	    	</inertial>
-      </link>
-
-		  	<!--FIXME no absoulte path-->
-		  	<plugin
-		  		filename="/home/paolo/light_sensor_plugin/install/lib/libLightSensor.so"
-		  		name="custom_light_sensor::LightSensor">
-		  		<update_rate>5</update_rate>
-		  	</plugin>
-    </model>
+    <joint name="light_joint1" type="fixed">
+      <parent>tower_sensor_plate</parent>
+      <child>light_sensor1_link</child>
+    </joint>
   </gazebo>
 
+  <xacro:include filename="$(find turtlebot4_description)/urdf/sensors/light_sensor1.urdf.xacro" />
+  <xacro:light_sensor1 name="light_sensor1"/>
+
+  <gazebo>
+    <joint name="light_joint2" type="fixed">
+      <parent>base_link</parent>
+      <child>light_sensor2_link</child>
+    </joint>
+  </gazebo>
+
+  <xacro:include filename="$(find turtlebot4_description)/urdf/sensors/light_sensor2.urdf.xacro" />
+  <xacro:light_sensor2 name="light_sensor2"/>
+
+  
 </robot>
