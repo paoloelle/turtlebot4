@@ -120,7 +120,7 @@
   </joint>
 
   <!-- Gazebo links and joints -->
-  <gazebo reference="${name}_rgb_camera_frame">
+  <!-- <gazebo reference="${name}_rgb_camera_frame">
     <sensor name="rgbd_camera" type="rgbd_camera">
       <camera>
         <horizontal_fov>1.25</horizontal_fov>
@@ -139,7 +139,7 @@
       <visualize>true</visualize>
     </sensor>
     <xacro:material_darkgray/>
-  </gazebo>
+  </gazebo> -->
 
   <gazebo reference="${name}_joint">
     <preserveFixedJoint>true</preserveFixedJoint>
