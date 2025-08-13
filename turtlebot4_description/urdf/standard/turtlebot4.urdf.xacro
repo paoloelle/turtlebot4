@@ -1,5 +1,10 @@
 <?xml version="1.0" ?>
 <robot name="turtlebot4" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:arg name="namespace" default="turtlebot4"/>
+  <xacro:property name="robot_ns" value="$(arg namespace)"/>
+
+
   <!-- Base create3 model -->
   <xacro:include filename="$(find irobot_create_description)/urdf/create3.urdf.xacro" />
   <xacro:include filename="$(find turtlebot4_description)/urdf/sensors/rplidar.urdf.xacro" />
@@ -39,6 +44,9 @@
   <xacro:property name="oakd_pro_x_offset"             value="${5.84*cm2m}"/>
   <xacro:property name="oakd_pro_y_offset"             value="${0*cm2m}"/>
   <xacro:property name="oakd_pro_z_offset"             value="${9.676*cm2m}"/>
+
+
+
 
   <joint name="shell_link_joint" type="fixed">
     <parent link="base_link"/>
@@ -109,6 +117,29 @@
     <origin xyz="0 0 ${tower_sensor_plate_z_offset}"/>
   </xacro:tower_sensor_plate>
 
+  
+
+<!-- DetachableJoint: una istanza per ogni oggetto -->
+  <gazebo>
+
+    <!-- object1 detachable link-->
+    <plugin filename="gz-sim-detachable-joint-system"
+            name="gz::sim::systems::DetachableJoint">
+      <parent_link>tower_sensor_plate</parent_link>          <!-- link del robot -->
+      <child_model>object1</child_model>                     <!-- nome MODEL nel world -->
+      <child_link>link_object</child_link>       <!-- link interno dell'oggetto -->
+      <attach_topic>/${robot_ns}/object1/attach</attach_topic>
+      <detach_topic>/${robot_ns}/object1/detach</detach_topic>
+      <output_topic>/${robot_ns}/object1/state</output_topic> 
+    </plugin>
+
+ 
+
+ 
+  </gazebo>
+ 
+
+
   <!-- Turtlebot4 sensor definitions -->
 
   <xacro:rplidar name="rplidar" parent_link="shell_link" gazebo="$(arg gazebo)">
@@ -133,3 +164,5 @@
     <child link="base_footprint" />
   </joint>
 </robot>
+
+ 

@@ -21,6 +21,9 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import Command, PathJoinSubstitution
 from launch.substitutions.launch_configuration import LaunchConfiguration
+from launch_ros.parameter_descriptions import ParameterValue
+from launch.substitutions import Command, FindExecutable, PathJoinSubstitution, TextSubstitution
+
 
 from launch_ros.actions import Node
 
@@ -54,15 +57,23 @@ def generate_launch_description():
         output='screen',
         parameters=[
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
-            {'robot_description': Command([
-                'xacro', ' ', xacro_file, ' ',
-                'gazebo:=ignition', ' ',
-                'namespace:=', namespace])},
+            {
+                'robot_description': ParameterValue(
+                    Command([
+                        FindExecutable(name='xacro'),
+                        TextSubstitution(text=' '),
+                        xacro_file,
+                        TextSubstitution(text=' '),
+                        TextSubstitution(text='gazebo:=ignition'),
+                        TextSubstitution(text=' '),
+                        TextSubstitution(text='namespace:='),
+                        namespace
+                    ]),
+                    value_type=str
+                )
+            },
         ],
-        remappings=[
-            ('/tf', 'tf'),
-            ('/tf_static', 'tf_static')
-        ]
+        remappings=[('/tf', 'tf'), ('/tf_static', 'tf_static')]
     )
 
     joint_state_publisher = Node(
