@@ -119,25 +119,25 @@
 
   
 
-<!-- DetachableJoint: una istanza per ogni oggetto -->
+<!-- DetachableJoint: I need a detachable joint for each object -->
   <gazebo>
 
     <!-- object1 detachable link-->
     <plugin filename="gz-sim-detachable-joint-system"
             name="gz::sim::systems::DetachableJoint">
-      <parent_link>tower_sensor_plate</parent_link>          <!-- link del robot -->
-      <child_model>object1</child_model>                     <!-- nome MODEL nel world -->
-      <child_link>link_object</child_link>       <!-- link interno dell'oggetto -->
-      <attach_topic>/${robot_ns}/object1/attach</attach_topic>
-      <detach_topic>/${robot_ns}/object1/detach</detach_topic>
-      <output_topic>/${robot_ns}/object1/state</output_topic> 
+      <parent_link>tower_sensor_plate</parent_link>          <!-- robot link -->
+      <child_model>object1</child_model>                     <!-- object name -->
+      <child_link>link_object</child_link>                   <!-- object link -->
+      <attach_topic>/${robot_ns}/object1/attach</attach_topic> <!-- topic for attach command-->
+      <detach_topic>/${robot_ns}/object1/detach</detach_topic> <!-- topic for detach command-->
+      <output_topic>/${robot_ns}/object1/state</output_topic> <!-- topic for statu of of the joint, not used -->
     </plugin>
     <!-- object2 detachable link-->
     <plugin filename="gz-sim-detachable-joint-system"
             name="gz::sim::systems::DetachableJoint">
-      <parent_link>tower_sensor_plate</parent_link>          <!-- link del robot -->
-      <child_model>object2</child_model>                     <!-- nome MODEL nel world -->
-      <child_link>link_object</child_link>       <!-- link interno dell'oggetto -->
+      <parent_link>tower_sensor_plate</parent_link>          
+      <child_model>object2</child_model>                     
+      <child_link>link_object</child_link>       
       <attach_topic>/${robot_ns}/object2/attach</attach_topic>
       <detach_topic>/${robot_ns}/object2/detach</detach_topic>
       <output_topic>/${robot_ns}/object2/state</output_topic> 
@@ -145,9 +145,9 @@
     <!-- object3 detachable link-->
     <plugin filename="gz-sim-detachable-joint-system"
             name="gz::sim::systems::DetachableJoint">
-      <parent_link>tower_sensor_plate</parent_link>          <!-- link del robot -->
-      <child_model>object3</child_model>                     <!-- nome MODEL nel world -->
-      <child_link>link_object</child_link>       <!-- link interno dell'oggetto -->
+      <parent_link>tower_sensor_plate</parent_link>          
+      <child_model>object3</child_model>                     
+      <child_link>link_object</child_link>       
       <attach_topic>/${robot_ns}/object3/attach</attach_topic>
       <detach_topic>/${robot_ns}/object3/detach</detach_topic>
       <output_topic>/${robot_ns}/object3/state</output_topic> 
@@ -155,9 +155,9 @@
       <!-- object4 detachable link-->
     <plugin filename="gz-sim-detachable-joint-system"
             name="gz::sim::systems::DetachableJoint">
-      <parent_link>tower_sensor_plate</parent_link>          <!-- link del robot -->
-      <child_model>object4</child_model>                     <!-- nome MODEL nel world -->
-      <child_link>link_object</child_link>       <!-- link interno dell'oggetto -->
+      <parent_link>tower_sensor_plate</parent_link>          
+      <child_model>object4</child_model>                     
+      <child_link>link_object</child_link>       
       <attach_topic>/${robot_ns}/object4/attach</attach_topic>
       <detach_topic>/${robot_ns}/object4/detach</detach_topic>
       <output_topic>/${robot_ns}/object4/state</output_topic> 
@@ -165,9 +165,9 @@
       <!-- object5 detachable link-->
     <plugin filename="gz-sim-detachable-joint-system"
             name="gz::sim::systems::DetachableJoint">
-      <parent_link>tower_sensor_plate</parent_link>          <!-- link del robot -->
-      <child_model>object5</child_model>                     <!-- nome MODEL nel world -->
-      <child_link>link_object</child_link>       <!-- link interno dell'oggetto -->
+      <parent_link>tower_sensor_plate</parent_link>          
+      <child_model>object5</child_model>                     
+      <child_link>link_object</child_link>       
       <attach_topic>/${robot_ns}/object5/attach</attach_topic>
       <detach_topic>/${robot_ns}/object5/detach</detach_topic>
       <output_topic>/${robot_ns}/object5/state</output_topic> 
@@ -175,9 +175,9 @@
       <!-- object6 detachable link-->
     <plugin filename="gz-sim-detachable-joint-system"
             name="gz::sim::systems::DetachableJoint">
-      <parent_link>tower_sensor_plate</parent_link>          <!-- link del robot -->
-      <child_model>object6</child_model>                     <!-- nome MODEL nel world -->
-      <child_link>link_object</child_link>       <!-- link interno dell'oggetto -->
+      <parent_link>tower_sensor_plate</parent_link>          
+      <child_model>object6</child_model>                     
+      <child_link>link_object</child_link>       
       <attach_topic>/${robot_ns}/object6/attach</attach_topic>
       <detach_topic>/${robot_ns}/object6/detach</detach_topic>
       <output_topic>/${robot_ns}/object6/state</output_topic> 
@@ -185,9 +185,9 @@
       <!-- object7 detachable link-->
     <plugin filename="gz-sim-detachable-joint-system"
             name="gz::sim::systems::DetachableJoint">
-      <parent_link>tower_sensor_plate</parent_link>          <!-- link del robot -->
-      <child_model>object7</child_model>                     <!-- nome MODEL nel world -->
-      <child_link>link_object</child_link>       <!-- link interno dell'oggetto -->
+      <parent_link>tower_sensor_plate</parent_link>          
+      <child_model>object7</child_model>                     
+      <child_link>link_object</child_link>       
       <attach_topic>/${robot_ns}/object7/attach</attach_topic>
       <detach_topic>/${robot_ns}/object7/detach</detach_topic>
       <output_topic>/${robot_ns}/object7/state</output_topic> 
